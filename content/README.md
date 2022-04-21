@@ -1,9 +1,5 @@
-### Apache-2.0 License
-
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
-[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
-
+### AGPL-3.0 License
+ [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 # Title
 
 ## Table of Contents
@@ -35,3 +31,4 @@
 ## Contribute
 
 ## Tests
+
