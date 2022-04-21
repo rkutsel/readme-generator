@@ -1,10 +1,9 @@
-//Import modules here
 const inquirer = require("inquirer");
 const fs = require("fs");
 const questions = require("./src/questions");
+const licenseFetch = require("./src/license");
 
-//Define globals here
-const filePath = "./content/README.md";
+const fileReadmePath = "./content/README.md";
 let minimalContent = [];
 let extendedContent = "";
 
@@ -12,11 +11,11 @@ function writeToFile() {
 	try {
 		if (minimalContent.length > 0) {
 			fs.writeFileSync(
-				filePath,
+				fileReadmePath,
 				`# ${minimalContent[0]}\n\n ${"#".repeat(2)} ${minimalContent[1]}`
 			);
 		} else {
-			fs.writeFileSync(filePath, extendedContent);
+			fs.writeFileSync(fileReadmePath, extendedContent);
 		}
 	} catch (error) {
 		console.error(`Couldn't write to a file: ${error.message}`);
@@ -50,20 +49,20 @@ function generateExtended() {
 	});
 }
 
-function chooseLicense() {
+async function chooseLicense(response) {
 	inquirer.prompt(questions.license).then((answer) => {
 		if (!Object.values(answer)[0]) {
 			return console.log("Canceled. You opted out of including a license.");
 		} else {
-			inquirer.prompt(questions.licenseOptions).then(answer);
+			licenseFetch();
 		}
 	});
 }
 
-function isFilePresent(filePath, answer) {
+function isFilePresent(fileReadmePath, answer) {
 	const scope = Object.values(answer)[0];
 
-	if (fs.existsSync(filePath)) {
+	if (fs.existsSync(fileReadmePath)) {
 		inquirer.prompt(questions.isFilePresent).then((answer) => {
 			if (!Object.values(answer)[0]) {
 				return console.log(
@@ -78,7 +77,7 @@ function initApp() {
 	console.log("Let's generate a neat README!");
 
 	inquirer.prompt(questions.scope).then((answer) => {
-		isFilePresent(filePath, answer);
+		isFilePresent(fileReadmePath, answer);
 	});
 }
 
