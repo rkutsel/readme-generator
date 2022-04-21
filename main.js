@@ -3,7 +3,7 @@ const fs = require("fs");
 const questions = require("./src/questions");
 const licenseFetch = require("./src/license");
 
-const fileReadmePath = "./content/README.md";
+const readmeFilePath = "./content/README.md";
 let minimalContent = [];
 let extendedContent = "";
 
@@ -11,14 +11,14 @@ function writeToFile() {
 	try {
 		if (minimalContent.length > 0) {
 			fs.writeFileSync(
-				fileReadmePath,
+				readmeFilePath,
 				`# ${minimalContent[0]}\n\n ${"#".repeat(2)} ${minimalContent[1]}`
 			);
 		} else {
-			fs.writeFileSync(fileReadmePath, extendedContent);
+			fs.writeFileSync(readmeFilePath, extendedContent);
 		}
 	} catch (error) {
-		console.error(`Couldn't write to a file: ${error.message}`);
+		console.error(`Couldn't write to ${readmeFilePath} file: ${error.message}`);
 	}
 }
 
@@ -59,10 +59,10 @@ async function chooseLicense(response) {
 	});
 }
 
-function isFilePresent(fileReadmePath, answer) {
+function isFilePresent(readmeFilePath, answer) {
 	const scope = Object.values(answer)[0];
 
-	if (fs.existsSync(fileReadmePath)) {
+	if (fs.existsSync(readmeFilePath)) {
 		inquirer.prompt(questions.isFilePresent).then((answer) => {
 			if (!Object.values(answer)[0]) {
 				return console.log(
@@ -74,10 +74,10 @@ function isFilePresent(fileReadmePath, answer) {
 }
 
 function initApp() {
-	console.log("Let's generate a neat README!");
+	console.log("Let's generate a neat README template!");
 
 	inquirer.prompt(questions.scope).then((answer) => {
-		isFilePresent(fileReadmePath, answer);
+		isFilePresent(readmeFilePath, answer);
 	});
 }
 

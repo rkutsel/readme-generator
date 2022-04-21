@@ -3,10 +3,11 @@ const https = require("https");
 const inquirer = require("inquirer");
 const questions = require("./questions");
 
-let gitFetchRep;
+let userInput;
+let httpGetReply;
 let licenseName;
-const fileLicensePath = "./content/LICENSE.txt";
-const fileReadmePath = "./content/README.md";
+const licenseFilePath = "./content/LICENSE.txt";
+const readmeFilePath = "./content/README.md";
 
 const gitBadges = {
 	MIT: "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)",
@@ -39,7 +40,7 @@ function gitHubFetchAll() {
 			});
 			result.on("end", () => {
 				const dataResponse = JSON.parse(bodyInit);
-				gitFetchRep = dataResponse;
+				httpGetReply = dataResponse;
 				dataResponse.forEach((element) => {
 					questions.licenseOptions[0].choices.push(element.spdx_id);
 				});
@@ -66,7 +67,7 @@ function gitHubFetchOne(licenseName) {
 			});
 			result.on("end", () => {
 				const dataResponse = JSON.parse(bodyInit);
-				gitFetchRep = dataResponse.body;
+				httpGetReply = dataResponse.body;
 			});
 		})
 		.on("error", (error) => {
@@ -86,39 +87,48 @@ function promptUser() {
 				);
 			} else {
 				inquirer.prompt(questions.licensePutName).then((answer) => {
-					console.log(answer.licensePutName);
-					gitFetchRep = gitFetchRep.replace("[year]", Date().split(" ")[3]);
-					gitFetchRep = gitFetchRep.replace(
-						"[fullname]",
-						answer.licensePutName
-					);
-					writeToFile();
+					userInput = answer.licensePutName;
+					addCopyright();
 				});
 			}
 		});
 	});
 }
 
+function addCopyright() {
+	httpGetReply = httpGetReply.replace(
+		"[year] [fullname]",
+		`[${Date().split(" ")[3]}] [${userInput}]`
+	);
+	httpGetReply = httpGetReply.replace(
+		"[yyyy] [name of copyright owner]",
+		`[${[Date().split(" ")[3]]}] [${userInput}]`
+	);
+	httpGetReply = httpGetReply.replace(
+		"[year], [fullname]",
+		`[${[Date().split(" ")[3]]}], [${userInput}]`
+	);
+	writeToFile();
+}
+
 function updateReadme() {
 	try {
 		const loadFile = fs.readFileSync("./content/README.md");
 		fs.writeFileSync(
-			fileReadmePath,
+			readmeFilePath,
 			`### ${licenseName} License\n ${gitBadges[licenseName]}\n`
 		);
-		fs.appendFileSync(fileReadmePath, loadFile);
+		fs.appendFileSync(readmeFilePath, loadFile);
 	} catch (error) {
-		console.error(`Couldn't write to a file: ${error.message}`);
+		console.error(`Couldn't write to ${readmeFilePath} file: ${error.message}`);
 	}
 }
 
 function writeToFile() {
-	// gitFetchRep.replace("[year]", `[${Date().split(" ")[3]}]`);
 	try {
-		fs.writeFileSync(fileLicensePath, gitFetchRep);
-		inquirer.prompt(questions.openEditor).then((answer) => {});
+		fs.writeFileSync(licenseFilePath, httpGetReply);
 	} catch (error) {
-		console.error(`Couldn't write to a file: ${error.message}`);
+		console.error(`Couldn't write to ${readmeFilePath} file: ${error.message}`);
 	}
 }
 

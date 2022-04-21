@@ -1,4 +1,4 @@
-const fileReadmePath = "./content/README.md";
+const readmeFilePath = "./content/README.md";
 
 const scope = [
 	{
@@ -71,7 +71,7 @@ const isFilePresent = [
 	{
 		type: "confirm",
 		name: "fileOverwrite",
-		message: `File in ${fileReadmePath} already present. Would you like to overwrite it?`,
+		message: `File in ${readmeFilePath} already present. Would you like to overwrite it?`,
 	},
 ];
 
@@ -112,21 +112,6 @@ const licensePutName = [
 	},
 ];
 
-const openEditor = [
-	{
-		type: "editor",
-		name: "openEditor",
-		message: "Please write a short bio of at least 3 lines.",
-		validate(text) {
-			if (text.split("\n").length < 3) {
-				return "Must be at least 3 lines.";
-			}
-
-			return true;
-		},
-	},
-];
-
 module.exports = {
 	scope,
 	scopeMinimal,
@@ -136,5 +121,4 @@ module.exports = {
 	licenseOptions,
 	licenseConfirmName,
 	licensePutName,
-	openEditor,
 };
