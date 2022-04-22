@@ -116,7 +116,7 @@ function updateReadme() {
 		const loadFile = fs.readFileSync("./content/README.md");
 		fs.writeFileSync(
 			readmeFilePath,
-			`### ${licenseName} License\n ${gitBadges[licenseName]}\n`
+			`### ${licenseName} License\n ${gitBadges[licenseName]}\n\n`
 		);
 		fs.appendFileSync(readmeFilePath, loadFile);
 	} catch (error) {
