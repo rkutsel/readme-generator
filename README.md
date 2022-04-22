@@ -29,6 +29,10 @@ found 0 vulnerabilities
 
 ## Usage with Examples
 
+1. Generate bare minimum (Minimal Option) README
+
+![caption](./assets/minimal.mov)
+
 ## Contribute
 
 Reach out if you feel like contributing or if you saw something that shouldn't be there.
