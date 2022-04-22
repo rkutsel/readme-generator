@@ -3,7 +3,7 @@ const fs = require("fs");
 const questions = require("./src/questions");
 const licenseFetch = require("./src/license");
 
-const readmeFilePath = "./content/README.md";
+const readmeFilePath = "./generated-content/README.md";
 let minimalContent = [];
 let extendedContent = "";
 

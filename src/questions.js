@@ -1,4 +1,4 @@
-const readmeFilePath = "./content/README.md";
+const readmeFilePath = "./generated-content/README.md";
 
 const scope = [
 	{

@@ -6,8 +6,8 @@ const questions = require("./questions");
 let userInput;
 let httpGetReply;
 let licenseName;
-const licenseFilePath = "./content/LICENSE.txt";
-const readmeFilePath = "./content/README.md";
+const licenseFilePath = "./generated-content/LICENSE.txt";
+const readmeFilePath = "./generated-content/README.md";
 
 const gitBadges = {
 	MIT: "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)",
