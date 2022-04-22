@@ -29,9 +29,13 @@ found 0 vulnerabilities
 
 ## Usage with Examples
 
-1. Generate bare minimum (Minimal Option) README
+> 1. Generate bare minimum (Minimal Option) README
 
 ![caption](./assets/minimal.mov)
+
+> 2. Generate full (Extended Option) README
+
+![caption](./assets/extended.mov)
 
 ## Contribute
 
