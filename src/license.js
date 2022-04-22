@@ -127,6 +127,11 @@ function updateReadme() {
 function writeToFile() {
 	try {
 		fs.writeFileSync(licenseFilePath, httpGetReply);
+		console.log(
+			`Done! Your file(s) can be found in ${
+				readmeFilePath.split("/")[1]
+			} directory.`
+		);
 	} catch (error) {
 		console.error(`Couldn't write to ${readmeFilePath} file: ${error.message}`);
 	}

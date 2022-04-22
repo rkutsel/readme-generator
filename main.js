@@ -53,7 +53,7 @@ async function chooseLicense(response) {
 	inquirer.prompt(questions.license).then((answer) => {
 		if (!Object.values(answer)[0]) {
 			return console.log(
-				`Done! Your generated README can be found in ${readmeFilePath}`
+				"Canceled. You can try again by running node main in your cli prompt."
 			);
 		} else {
 			licenseFetch();
@@ -68,7 +68,7 @@ function isFilePresent(readmeFilePath, answer) {
 		inquirer.prompt(questions.isFilePresent).then((answer) => {
 			if (!Object.values(answer)[0]) {
 				return console.log(
-					"Canceled. You can try again by running node main.js in your cli prompt."
+					"Canceled. You can try again by running node main in your cli prompt."
 				);
 			} else scope === "Minimal" ? generateMinimal() : generateExtended();
 		});
