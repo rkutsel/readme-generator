@@ -1,7 +1,3 @@
-### The MIT License
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 # Markdown README Generator
 
 ## Description
@@ -40,3 +36,7 @@ found 0 vulnerabilities
 ## Contribute
 
 Reach out if you feel like contributing or if you saw something that shouldn't be there.
+
+### The MIT License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
