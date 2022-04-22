@@ -83,7 +83,7 @@ function promptUser() {
 		inquirer.prompt(questions.licenseConfirmName).then((answer) => {
 			if (!Object.values(answer)[0]) {
 				return console.log(
-					"Canceled. You opted out of including your name in the license."
+					"Canceled. You opted out of copyright info to your license."
 				);
 			} else {
 				inquirer.prompt(questions.licensePutName).then((answer) => {
@@ -98,15 +98,15 @@ function promptUser() {
 function addCopyright() {
 	httpGetReply = httpGetReply.replace(
 		"[year] [fullname]",
-		`[${Date().split(" ")[3]}] [${userInput}]`
+		`${Date().split(" ")[3]} ${userInput}`
 	);
 	httpGetReply = httpGetReply.replace(
 		"[yyyy] [name of copyright owner]",
-		`[${[Date().split(" ")[3]]}] [${userInput}]`
+		`${[Date().split(" ")[3]]} ${userInput}`
 	);
 	httpGetReply = httpGetReply.replace(
 		"[year], [fullname]",
-		`[${[Date().split(" ")[3]]}], [${userInput}]`
+		`${[Date().split(" ")[3]]}, ${userInput}`
 	);
 	writeToFile();
 }

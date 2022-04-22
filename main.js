@@ -52,7 +52,9 @@ function generateExtended() {
 async function chooseLicense(response) {
 	inquirer.prompt(questions.license).then((answer) => {
 		if (!Object.values(answer)[0]) {
-			return console.log("Canceled. You opted out of including a license.");
+			return console.log(
+				`Done! Your generated README can be found in ${readmeFilePath}`
+			);
 		} else {
 			licenseFetch();
 		}
