@@ -113,7 +113,7 @@ function addCopyright() {
 
 function updateReadme() {
 	try {
-		const loadFile = fs.readFileSync("./content/README.md");
+		const loadFile = fs.readFileSync("./generated-content/README.md");
 		fs.writeFileSync(
 			readmeFilePath,
 			`### ${licenseName} License\n ${gitBadges[licenseName]}\n\n`
