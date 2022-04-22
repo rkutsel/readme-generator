@@ -31,11 +31,11 @@ found 0 vulnerabilities
 
 > 1. Generate bare minimum (Minimal Option) README
 
-![minimal](./assets/minimal.mov)
+![caption](./assets/minimal.mov)
 
 > 2. Generate full (Extended Option) README
 
-![extended](./assets/extended.mov)
+![caption](./assets/extended.mov)
 
 ## Contribute
 
